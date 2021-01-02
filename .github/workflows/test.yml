@@ -1,0 +1,43 @@
+name: Build and test
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  macos_test:
+    name: Test macOS
+    strategy:
+      matrix:
+        macVersion: ["11.0", "10.15"]
+
+    runs-on: macos-${{ matrix.macVersion }}
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: true
+      - name: Run the test suite on macOS ${{ matrix.macVersion }}
+        shell: bash
+        run: |
+          set -ex
+          swift test
+
+  ubuntu_test:
+    name: Test Ubuntu
+    strategy:
+      matrix:
+        ubuntuVersion: ["18.04", "20.04"]
+
+    runs-on: ubuntu-${{ matrix.ubuntuVersion }}
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: true
+      - name: Run the test suite on Ubuntu ${{ matrix.ubuntuVersion }}
+        shell: bash
+        run: |
+          set -ex
+          swift test --enable-test-discovery
