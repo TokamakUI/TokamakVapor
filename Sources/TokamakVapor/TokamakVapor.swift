@@ -2,7 +2,7 @@
 //  Created by Max Desiatov on 02/01/2021.
 //
 
-import TokamakStaticHTML
+@_exported import TokamakStaticHTML
 import Vapor
 
 extension HTML: ResponseEncodable {
