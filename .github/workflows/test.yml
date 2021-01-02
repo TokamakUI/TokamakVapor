@@ -22,7 +22,7 @@ jobs:
         shell: bash
         run: |
           set -ex
-          sudo xcode-select --switch /Applications/Xcode_12.2.app/Contents/Developer/
+          sudo xcode-select --switch /Applications/Xcode_12.3.app/Contents/Developer/
           swift --version
           swift test
 
