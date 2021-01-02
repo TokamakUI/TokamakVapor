@@ -22,6 +22,7 @@ jobs:
         shell: bash
         run: |
           set -ex
+          swift --version
           swift test
 
   ubuntu_test:
@@ -40,4 +41,5 @@ jobs:
         shell: bash
         run: |
           set -ex
+          swift --version
           swift test --enable-test-discovery
