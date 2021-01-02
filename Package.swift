@@ -25,6 +25,14 @@ let package = Package(
             dependencies: [
                 .product(name: "Vapor", package: "vapor"),
                 .product(name: "TokamakStaticHTML", package: "Tokamak")
-            ]),
+            ]
+        ),
+        .testTarget(
+            name: "TokamakVaporTests",
+            dependencies: [
+                .product(name: "Vapor", package: "vapor"),
+                "TokamakVapor"
+            ]
+        )
     ]
 )
