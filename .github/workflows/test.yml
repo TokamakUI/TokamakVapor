@@ -10,7 +10,7 @@ jobs:
     name: Test macOS
     strategy:
       matrix:
-        macVersion: ["11.0", "10.15"]
+        macVersion: ["10.15"]
 
     runs-on: macos-${{ matrix.macVersion }}
 
@@ -25,6 +25,8 @@ jobs:
           sudo xcode-select --switch /Applications/Xcode_12.3.app/Contents/Developer/
           swift --version
           swift test
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
 
   ubuntu_test:
     name: Test Ubuntu
