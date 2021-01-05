@@ -10,7 +10,7 @@ jobs:
     name: Test macOS
     strategy:
       matrix:
-        macVersion: ["10.15"]
+        macVersion: ["11.0"]
 
     runs-on: macos-${{ matrix.macVersion }}
 
@@ -24,15 +24,7 @@ jobs:
           set -ex
           sudo xcode-select --switch /Applications/Xcode_12.3.app/Contents/Developer/
           swift --version
-          swift test || ls /Users/runner/Library/Logs/DiagnosticReports
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v3
-        if: failure()
-      - name: Upload logs
-        uses: actions/upload-artifact@v1
-        with:
-          name: logs
-          path: /Users/runner/Library/Logs/DiagnosticReports
+          swift test
 
   ubuntu_test:
     name: Test Ubuntu
