@@ -27,6 +27,7 @@ jobs:
           swift test
       - name: Setup tmate session
         uses: mxschmitt/action-tmate@v3
+        if: failure()
 
   ubuntu_test:
     name: Test Ubuntu
