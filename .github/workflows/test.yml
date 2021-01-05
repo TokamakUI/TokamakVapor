@@ -10,7 +10,7 @@ jobs:
     name: Test macOS
     strategy:
       matrix:
-        macVersion: ["11.0", "10.15"]
+        macVersion: ["11.0"]
 
     runs-on: macos-${{ matrix.macVersion }}
 
