@@ -24,13 +24,12 @@ jobs:
           set -ex
           sudo xcode-select --switch /Applications/Xcode_12.3.app/Contents/Developer/
           swift --version
-          swift test
+          swift test || ls /Users/runner/Library/Logs/DiagnosticReports
       - name: Upload logs
         uses: actions/upload-artifact@v1
         with:
           name: logs
           path: /Users/runner/Library/Logs/DiagnosticReports
-        if: failure()
 
   ubuntu_test:
     name: Test Ubuntu
