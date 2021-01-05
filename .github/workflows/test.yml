@@ -25,8 +25,11 @@ jobs:
           sudo xcode-select --switch /Applications/Xcode_12.3.app/Contents/Developer/
           swift --version
           swift test
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v3
+      - name: Upload logs
+        uses: actions/upload-artifact@v1
+        with:
+          name: logs
+          path: /Users/runner/Library/Logs/DiagnosticReports
         if: failure()
 
   ubuntu_test:
