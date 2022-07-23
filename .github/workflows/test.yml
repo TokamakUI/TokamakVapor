@@ -11,8 +11,8 @@ jobs:
     strategy:
       matrix:
         include:
-          - { macVersion: "macos-11.0", xcode: "Xcode_13.2.1" }
-          - { macVersion: "macos-12.0", xcode: "Xcode_13.4.1" }
+          - { macVersion: "macos-11", xcode: "Xcode_13.2.1" }
+          - { macVersion: "macos-12", xcode: "Xcode_13.4.1" }
 
     runs-on: ${{ matrix.macVersion }}
 
