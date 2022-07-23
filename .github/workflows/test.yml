@@ -10,7 +10,9 @@ jobs:
     name: Test macOS
     strategy:
       matrix:
-        macVersion: ["11.0"]
+        include:
+          - { os: "macos-11.0", xcode: "13.2.1" }
+          - { os: "macos-12.0", xcode: "13.4.1" }
 
     runs-on: macos-${{ matrix.macVersion }}
 
@@ -18,11 +20,11 @@ jobs:
       - uses: actions/checkout@v2
         with:
           submodules: true
-      - name: Run the test suite on macOS ${{ matrix.macVersion }}
+      - name: Run the test suite on macOS ${{ matrix.os }}
         shell: bash
         run: |
           set -ex
-          sudo xcode-select --switch /Applications/Xcode_13.4.1.app/Contents/Developer/
+          sudo xcode-select --switch /Applications/Xcode_${{ matrix.xcode }}.app/Contents/Developer/
           swift --version
           swift test
 
