@@ -10,19 +10,20 @@ jobs:
     name: Test macOS
     strategy:
       matrix:
-        macVersion: ["11.0", "10.15"]
+        include:
+          - { macVersion: "macos-12", xcode: "Xcode_13.4.1" }
 
-    runs-on: macos-${{ matrix.macVersion }}
+    runs-on: ${{ matrix.macVersion }}
 
     steps:
       - uses: actions/checkout@v2
         with:
           submodules: true
-      - name: Run the test suite on macOS ${{ matrix.macVersion }}
+      - name: Run the test suite on ${{ matrix.os }}
         shell: bash
         run: |
           set -ex
-          sudo xcode-select --switch /Applications/Xcode_12.3.app/Contents/Developer/
+          sudo xcode-select --switch /Applications/${{ matrix.xcode }}.app/Contents/Developer/
           swift --version
           swift test
 
@@ -30,15 +31,15 @@ jobs:
     name: Test Ubuntu
     strategy:
       matrix:
-        ubuntuVersion: ["18.04", "20.04"]
+        ubuntuVersion: ["ubuntu-18.04", "ubuntu-20.04"]
 
-    runs-on: ubuntu-${{ matrix.ubuntuVersion }}
+    runs-on: ${{ matrix.ubuntuVersion }}
 
     steps:
       - uses: actions/checkout@v2
         with:
           submodules: true
-      - name: Run the test suite on Ubuntu ${{ matrix.ubuntuVersion }}
+      - name: Run the test suite on ${{ matrix.ubuntuVersion }}
         shell: bash
         run: |
           set -ex
